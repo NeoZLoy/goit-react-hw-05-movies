@@ -1,9 +1,9 @@
 import { getMovieCast } from "api";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import { StyledImage, StyledList, StyledText } from "./Cast.styled";
 
-const placeholderMan = 'https://cdn.vectorstock.com/i/1000x1000/13/68/person-gray-photo-placeholder-man-vector-23511368.webp'
-const placeholderWoman = 'https://cdn.vectorstock.com/i/1000x1000/13/70/person-gray-photo-placeholder-woman-vector-23511370.webp'
+const placeholder = 'https://cdn.vectorstock.com/i/1000x1000/13/68/person-gray-photo-placeholder-man-vector-23511368.webp'
 
 export const Cast = () => {
     const { movieId } = useParams();
@@ -31,27 +31,21 @@ export const Cast = () => {
         cast.length !== 0 
         ? (
             <>
-                <ul>
+                <StyledList>
                     {cast.map(actor => {
-                        let placeholder
-                        if (actor.gender === 1) {
-                            placeholder = placeholderWoman;
-                        }else{
-                            placeholder = placeholderMan
-                        }
                         return(
                             <li key={actor.id}>
-                                <img src={
+                                <StyledImage src={
                                     actor.profile_path 
                                     ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
                                     : placeholder
                                 } alt={actor.name} />
-                                <p>{actor.name}</p>
-                                <p>Character: {actor.character}</p>
+                                <StyledText>{actor.name}</StyledText>
+                                <StyledText>Character: {actor.character}</StyledText>
                             </li>
                         )
                     })}
-                </ul>
+                </StyledList>
             </>
         )
         :( 

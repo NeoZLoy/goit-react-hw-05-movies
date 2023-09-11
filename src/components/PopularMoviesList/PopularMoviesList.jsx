@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getPopularMovies } from "api";
-import { Link } from "react-router-dom";
+import { StyledItem, StyledList, StyledWrapper } from "./PopularMoviesList.styled";
 
 export const PopularMoviesList = () => {
 
@@ -20,14 +20,17 @@ export const PopularMoviesList = () => {
     }, [])
 
     return (
-        <ul>
+        <StyledWrapper>
+            <StyledList>
                 {popularMovies.map(movie => {
                     return(
                         <li key={movie.id}>
-                             <Link to={`movies/${movie.id}`}>{movie.title}</Link>
+                             <StyledItem to={`movies/${movie.id}`}>{movie.title}</StyledItem>
                         </li>
                     )
                 })}
-            </ul>
+            </StyledList>
+        </StyledWrapper>
+        
     )
 }

@@ -43,8 +43,8 @@ axios.defaults.baseURL = 'https://api.themoviedb.org';
 
  const getMovieByName = async (query) => {
     try {
-        const res = await axios.get(`/3/search/movie?api_key=${KEY}?query=${query}`)
-        return res
+        const res = await axios.get(`/3/search/movie?api_key=${KEY}&query=${query}`)
+        return res.data.results
     } catch (error) {
         console.log(error)
     }
