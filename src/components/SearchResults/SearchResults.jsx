@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+
 import { StyledList, StyledItem } from "./SearchResults.styled"
 
 export const SearchResults = ({results}) => {
