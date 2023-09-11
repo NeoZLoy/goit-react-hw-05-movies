@@ -1,6 +1,6 @@
 import { getMovieDetails } from 'api';
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { StyledImage, StyledLink, StyledWrapper, StyledList } from './MovieDetailsPage.styled';
 
 
