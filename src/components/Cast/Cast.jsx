@@ -49,7 +49,7 @@ export const Cast = () => {
             </>
         )
         :( 
-            `We don't have any cast for this movie.`
+            `We don't have any cast information for this movie.`
         )
     )
 }
