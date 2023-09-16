@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom"
 import { getPopularMovies } from "api";
 import { StyledItem, StyledList, StyledWrapper } from "./PopularMoviesList.styled";
 
-export const PopularMoviesList = () => {
 
+
+export const PopularMoviesList = () => {
+    const location = useLocation();
     const [popularMovies, setPopularMovies] = useState([])
 
     useEffect(() => {
@@ -25,7 +28,7 @@ export const PopularMoviesList = () => {
                 {popularMovies.map(movie => {
                     return(
                         <li key={movie.id}>
-                             <StyledItem to={`movies/${movie.id}`}>{movie.title}</StyledItem>
+                             <StyledItem to={`movies/${movie.id}`} state={{from: location}}>{movie.title}</StyledItem>
                         </li>
                     )
                 })}

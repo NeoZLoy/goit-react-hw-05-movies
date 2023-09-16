@@ -34,7 +34,6 @@ axios.defaults.baseURL = 'https://api.themoviedb.org';
  const getMovieReview = async (movieId) => {
     try {
         const res = await axios.get(`/3/movie/${movieId}/reviews?api_key=${KEY}`)
-        console.log(res)
         return res.data.results;
     } catch (error) {
         console.log(error)

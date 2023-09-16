@@ -1,6 +1,6 @@
 import { getMovieDetails } from 'api';
-import { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { StyledImage, StyledLink, StyledWrapper, StyledList } from './MovieDetailsPage.styled';
 
 
@@ -8,6 +8,8 @@ import { StyledImage, StyledLink, StyledWrapper, StyledList } from './MovieDetai
 export const MovieDetailsPage = () => {
     const { movieId } = useParams();
     const [movieDet, setMovieDet] = useState({})
+    const location = useLocation();
+    const ref = useRef(location.state.from);
 
     const placeholder = 'https://i.pinimg.com/564x/80/32/b4/8032b434ccb5d1a6824869dde681a7f8.jpg';
 
@@ -16,6 +18,7 @@ export const MovieDetailsPage = () => {
         try {
             const details = await getMovieDetails(movieId);
             setMovieDet(details);
+                        
         } catch (error) {
             console.log(error)
         }
@@ -25,7 +28,7 @@ export const MovieDetailsPage = () => {
     }, [movieId])
     return (
         <>
-            <StyledLink to={"/"}>Go back</StyledLink>
+            <StyledLink to={ref.current} state= {{from: location}}>Go back</StyledLink>
             <StyledWrapper>
                 <StyledImage src={
                   movieDet.poster_path
@@ -50,10 +53,10 @@ export const MovieDetailsPage = () => {
                 <h2>Additional information</h2>
                 <StyledList>
                     <li>
-                        <StyledLink to="cast">Cast</StyledLink>
+                        <StyledLink to="cast" state={{from: location}}>Cast</StyledLink>
                     </li>
                     <li>
-                        <StyledLink to="reviews">Reviews</StyledLink>
+                        <StyledLink to="reviews" state={{grom: location}}>Reviews</StyledLink>
                     </li>
                 </StyledList>
                 <Outlet />
